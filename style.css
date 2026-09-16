@@ -1,39 +1,114 @@
 html, body {
     margin: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    color: white;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 
 
-
-body{
-position: relative;
-color: white;
-text-align: center;
-}
-
-
+/* TYTUŁ */
 h1 {
     font-size: 90px;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
     font-weight: 600;
     color: white;
 }
 
 
-
-
+/* TŁO */
 body::before {
-content: "";
-position: fixed;
-inset: -10px;
+    content: "";
+    position: fixed;
+    inset: -10px;
 
-background-image: url("background.jpg");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-z-index: -1;
+    z-index: -1;
+    filter: blur(10px);
+}
 
-filter: blur(10px);
+
+/* SIATKA */
+.aircraft-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 240px);
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+
+/* KARTA */
+.aircraft-card {
+    width: 240px;
+
+    background: rgba(10, 15, 22, 0.75);
+
+    border: 1px solid rgba(180, 220, 255, 0.35);
+    border-radius: 16px;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 8px rgba(150, 210, 255, 0.15),
+        0 0 20px rgba(100, 180, 255, 0.08);
+
+    backdrop-filter: blur(8px);
+
+    transition: 0.25s ease;
+    .aircraft-card img {
+    width: 100%;
+    height: 240px;
+
+    object-fit: contain;
+    object-position: center;
+
+    display: block;
+
+    background: rgba(0, 0, 0, 0.2);
+}
+}
+
+
+/* HOVER */
+.aircraft-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(200, 225, 255, 0.85);
+
+    box-shadow:
+        0 0 12px rgba(180, 225, 255, 0.4),
+        0 0 25px rgba(100, 190, 255, 0.2);
+}
+
+
+/* ZDJĘCIE */
+.aircraft-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: rgba(0, 0, 0, 0.2);
+}
+
+
+/* NAZWA */
+.aircraft-name {
+    padding: 12px;
+    text-align: center;
+
+    font-size: 16px;
+    font-weight: bold;
 }
