@@ -13,10 +13,63 @@ body {
 
 
 /* TYTUŁ */
+/* GŁÓWNY TYTUŁ */
 h1 {
-    font-size: 90px;
-    font-weight: 600;
-    color: white;
+    margin-top: 35px;
+    margin-bottom: 35px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 82px;
+    font-weight: 800;
+
+    letter-spacing: 12px;
+
+    color: #071a2b;
+
+    text-shadow:
+        0 2px 0 rgba(255, 255, 255, 0.7),
+        0 0 15px rgba(180, 220, 255, 0.35);
+
+    position: relative;
+}
+
+
+/* KATEGORIA */
+.category-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.category-title::before,
+.category-title::after {
+    content: "";
+
+    width: 140px;
+    height: 2px;
+
+    background: rgba(15, 35, 55, 0.8);
+
+    box-shadow:
+        0 0 8px rgba(20, 70, 110, 0.35);
+}
+
+.category-title span {
+    font-family: "Arial Narrow", Arial, sans-serif;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    color: rgb(10, 35, 60);
+
+    text-shadow:
+        0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
 
@@ -32,6 +85,7 @@ body::before {
     background-repeat: no-repeat;
 
     z-index: -1;
+
     filter: blur(10px);
 }
 
@@ -39,9 +93,13 @@ body::before {
 /* SIATKA */
 .aircraft-grid {
     display: grid;
+
     grid-template-columns: repeat(4, 240px);
+
     gap: 20px;
+
     padding: 20px;
+
     justify-content: center;
 }
 
@@ -53,9 +111,11 @@ body::before {
     background: rgba(10, 15, 22, 0.75);
 
     border: 1px solid rgba(180, 220, 255, 0.35);
+
     border-radius: 16px;
 
     overflow: hidden;
+
     cursor: pointer;
 
     box-shadow:
@@ -65,17 +125,6 @@ body::before {
     backdrop-filter: blur(8px);
 
     transition: 0.25s ease;
-    .aircraft-card img {
-    width: 100%;
-    height: 240px;
-
-    object-fit: contain;
-    object-position: center;
-
-    display: block;
-
-    background: rgba(0, 0, 0, 0.2);
-}
 }
 
 
@@ -94,9 +143,10 @@ body::before {
 /* ZDJĘCIE */
 .aircraft-card img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 240px;
 
     object-fit: contain;
+    object-position: center;
 
     display: block;
 
@@ -107,6 +157,7 @@ body::before {
 /* NAZWA */
 .aircraft-name {
     padding: 12px;
+
     text-align: center;
 
     font-size: 16px;

@@ -2,29 +2,38 @@ const militaryAircraft = [
 
     {
         name: "F-117 Nighthawk",
-        image: "f117.jpg"
+        image: "F117.jpg"
     },
 
     {
         name: "Northrop B-2 Spirit",
-        image: "b-2.jpg"
+        image: "B2.jpg"
     },
 
     {
         name: "Boeing B-52 Stratofortress",
-        image: "b-52.jpg"
+        image: "B52.jpg"
     },
 
-       {
+    {
         name: "Rockwell B-1B Lancer",
-        image: "b-1.jpg"
+        image: "b1b lancer.jpg"
     },
 
-        {
-        name: " Northrop B-21 Raider",
-        image: " Northrop Grumman B-21 Raider.jpg"
+    {
+        name: "Northrop B-21 Raider",
+        image: "b21 raider.jpg"
     }
 
+];
+
+
+const fighterAircraft = [
+
+     {
+        name: "F-35A Lightning II",
+        image: "F-35.jpg"
+    }
 
 ];
 
@@ -66,3 +75,5 @@ function displayAircraft(aircraftList, containerId) {
 
 
 displayAircraft(militaryAircraft, "military");
+
+displayAircraft(fighterAircraft, "fighters");
