@@ -33,6 +33,11 @@ const fighterAircraft = [
      {
         name: "F-35A Lightning II",
         image: "F-35.jpg"
+    },
+
+    {
+        name: "F-22 Raptor" ,
+        image: "f-22.jpg"
     }
 
 ];
@@ -50,6 +55,20 @@ function createAircraftCard(aircraft) {
             ${aircraft.name}
         </div>
     `;
+
+
+    // Tylko F-35A otwiera popup
+    if (aircraft.name === "F-35A Lightning II") {
+
+        card.addEventListener("click", () => {
+
+            document
+                .getElementById("aircraft-popup")
+                .classList.add("active");
+
+        });
+
+    }
 
     return card;
 }
@@ -75,5 +94,44 @@ function displayAircraft(aircraftList, containerId) {
 
 
 displayAircraft(militaryAircraft, "military");
-
 displayAircraft(fighterAircraft, "fighters");
+
+
+
+const popup = document.getElementById("aircraft-popup");
+const closeButton = document.getElementById("popup-close");
+
+
+// ZAMKNIĘCIE PRZYCISKIEM X
+
+closeButton.addEventListener("click", () => {
+
+    popup.classList.remove("active");
+
+});
+
+
+// ZAMKNIĘCIE PO KLIKNIĘCIU POZA OKNEM
+
+popup.addEventListener("click", (event) => {
+
+    if (event.target === popup) {
+
+        popup.classList.remove("active");
+
+    }
+
+});
+
+
+// ZAMKNIĘCIE KLAWISZEM ESC
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        popup.classList.remove("active");
+
+    }
+
+});

@@ -163,3 +163,312 @@ body::before {
     font-size: 16px;
     font-weight: bold;
 }
+
+
+/* =========================
+   POPUP SAMOLOTU
+========================= */
+
+.aircraft-popup {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(3, 10, 17, 0.78);
+
+    backdrop-filter: blur(16px);
+
+    z-index: 1000;
+
+    padding: 30px;
+
+    opacity: 0;
+}
+
+
+/* POPUP AKTYWNY */
+
+.aircraft-popup.active {
+    display: flex;
+
+    animation: popupFadeIn 0.3s ease forwards;
+}
+
+
+/* UKRYCIE PASKA PRZEWIJANIA */
+
+.popup-content {
+    scrollbar-width: none;
+}
+
+.popup-content::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* GŁÓWNA KARTA */
+
+.popup-content {
+    position: relative;
+
+    width: min(900px, 90vw);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 24, 36, 0.97),
+            rgba(6, 14, 23, 0.97)
+        );
+
+    border: 1px solid rgba(160, 210, 255, 0.3);
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 0 25px rgba(90, 170, 240, 0.15),
+        0 0 80px rgba(30, 100, 160, 0.18);
+
+    text-align: left;
+
+    transform: translateY(30px) scale(0.96);
+
+    opacity: 0;
+
+    animation: popupCardIn 0.4s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+
+/* PRZYCISK X */
+
+.popup-close {
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(200, 225, 255, 0.2);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.popup-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+
+    border-color: rgba(200, 225, 255, 0.5);
+
+    transform: rotate(90deg) scale(1.05);
+}
+
+
+/* NAGŁÓWEK */
+
+.popup-header {
+    margin-bottom: 25px;
+
+    padding-right: 60px;
+
+    animation: contentSlide 0.5s 0.08s ease both;
+}
+
+.popup-title {
+    font-size: 38px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    color: white;
+
+    text-shadow:
+        0 0 12px rgba(150, 210, 255, 0.25);
+}
+
+.popup-subtitle {
+    margin-top: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    color: rgba(160, 200, 230, 0.65);
+}
+
+
+/* ZDJĘCIE */
+
+.popup-image-container 
+  /* ZDJĘCIE W POPUPIE */
+.popup-image-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+    border-radius: 18px;
+
+    border: 1px solid rgba(180, 220, 255, 0.18);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.popup-image-container img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    display: block;
+}
+
+
+
+
+/* SPECIFICATIONS */
+
+.specifications-title {
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 5px;
+
+    color: rgba(180, 215, 240, 0.8);
+
+    border-bottom: 1px solid rgba(180, 220, 255, 0.15);
+
+    padding-bottom: 12px;
+
+    animation: contentSlide 0.5s 0.22s ease both;
+}
+
+
+/* SPECYFIKACJE */
+
+.spec-list {
+    animation: contentSlide 0.5s 0.28s ease both;
+}
+
+.spec {
+    margin-bottom: 19px;
+}
+
+.spec-top {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: rgba(235, 242, 250, 0.85);
+}
+
+
+/* PASEK */
+
+.spec-bar {
+    width: 100%;
+    height: 7px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.spec-fill {
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        rgba(90, 160, 220, 0.6),
+        rgba(180, 225, 255, 0.95)
+    );
+
+    border-radius: 10px;
+
+    box-shadow: none;
+border: 1px solid rgba(160, 210, 255, 0.15);
+
+    animation: barGrow 0.9s 0.35s ease both;
+}
+
+
+/* =========================
+   ANIMACJE
+========================= */
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popupCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes contentSlide {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes barGrow {
+    from {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    to {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+}
