@@ -1,36 +1,36 @@
 
 <!DOCTYPE html>
-
-<html>
-
+<html lang="pl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlaneList</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
+    <button id="open-comparison" class="comparison-open" type="button">
+        OPEN COMPARISON
+    </button>
 
     <h1>Planelist</h1>
 
     <div class="category-title">
         <span>USAF BOMBERS</span>
     </div>
-
     <div id="military" class="aircraft-grid"></div>
-
 
     <div class="category-title">
         <span>USAF FIGHTER JETS</span>
     </div>
-
     <div id="fighters" class="aircraft-grid"></div>
 
-
-    <div id="aircraft-popup" class="aircraft-popup">
-
+    <!-- F-35A POPUP -->
+    <div id="aircraft-popup" class="aircraft-popup" aria-hidden="true">
         <div class="popup-content">
 
-            <button id="popup-close" class="popup-close">✕</button>
+            <button id="popup-close" class="popup-close"
+                    type="button" aria-label="Close">✕</button>
 
             <div class="popup-header">
                 <div class="popup-title">F-35A LIGHTNING II</div>
@@ -41,79 +41,130 @@
                 <img src="f-35X.jpg" alt="F-35A Lightning II">
             </div>
 
-            <div class="specifications-title">
-                SPECIFICATIONS
-            </div>
+            <div class="specifications-title">SPECIFICATIONS</div>
 
-        <div class="spec-list"> 
-
-
-            <div class="spec">
-                <div class="spec-top">
-                    <span>PRĘDKOŚĆ MAKS.</span>
-                    <span>Mach 1.6</span>
+            <div class="spec-list">
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>MAX SPEED</span>
+                        <span>Mach 1.6</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 70%;"></div>
+                    </div>
                 </div>
-                <div class="spec-bar">
-                    <div class="spec-fill" style="width: 70%;"></div>
-                
+
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>RANGE</span>
+                        <span>~2 200 km</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 80%;"></div>
+                    </div>
                 </div>
-            </div>
 
-            
-              <div class="spec">
-                <div class="spec-top">
-                    <span>ZASIĘG</span>
-                    <span>2 200km +</span>
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>AIR-TO-GROUND</span>
+                        <span>Excellent</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 98%;"></div>
+                    </div>
                 </div>
-                <div class="spec-bar">
-                    <div class="spec-fill" style="width: 80%;"></div>
-                
-                </div>
-            </div>
 
-
-
-
-
-              <div class="spec">
-                <div class="spec-top">
-                    <span>AIR-TO-GROUND</span>
-                    <span>Świetny</span>
-                </div>
-                <div class="spec-bar">
-                    <div class="spec-fill" style="width: 98%;"></div>
-                
-                </div>
-            </div>
-
-
-              <div class="spec">
-                <div class="spec-top">
-                    <span>AIR-TO-AIR</span>
-                    <span>Bardzo Dobry</span>
-                </div>
-                <div class="spec-bar">
-                    <div class="spec-fill" style="width: 90%;"></div>
-                
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>AIR-TO-AIR</span>
+                        <span>Very good</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 90%;"></div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <!-- F-22 POPUP -->
+    <div id="f22-popup" class="aircraft-popup" aria-hidden="true">
+        <div class="popup-content">
 
-            
+            <button id="f22-popup-close" class="popup-close"
+                    type="button" aria-label="Close">✕</button>
+
+            <div class="popup-header">
+                <div class="popup-title">F-22 RAPTOR</div>
+                <div class="popup-subtitle">AIR SUPERIORITY STEALTH FIGHTER</div>
+            </div>
+
+            <div class="popup-image-container">
+                <img src="f-22X.jpg" alt="F-22 Raptor">
+            </div>
+
+            <div class="specifications-title">SPECIFICATIONS</div>
+
+            <div class="spec-list">
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>MAX SPEED</span>
+                        <span>Mach 2.25</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>RANGE</span>
+                        <span>~3 000 km</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>AIR-TO-GROUND</span>
+                        <span>Good</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="spec">
+                    <div class="spec-top">
+                        <span>AIR-TO-AIR</span>
+                        <span>Excellent</span>
+                    </div>
+                    <div class="spec-bar">
+                        <div class="spec-fill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AIRCRAFT COMPARISON -->
+    <div id="comparison-screen" class="comparison-screen" aria-hidden="true">
+        <header class="comparison-header">
+            <h2>AIRCRAFT COMPARISON</h2>
+
+            <button id="close-comparison"
+                    class="comparison-close"
+                    type="button"
+                    aria-label="Close comparison">✕</button>
+        </header>
+
+        <!-- Zostaw tutaj swoją dotychczasową zawartość porównywarki,
+             jeśli masz w niej selecty i karty porównywanych samolotów. -->
+
+    </div>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
-
-
-
-
-
-<img src="f-35X.jpg"
-```
-
-na:
-
-<img src="images/f-35X.jpg"

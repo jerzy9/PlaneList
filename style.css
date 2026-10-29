@@ -1,4 +1,11 @@
-html, body {
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -6,41 +13,46 @@ html, body {
 
 body {
     position: relative;
+    min-height: 100vh;
     color: white;
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 
+/* TŁO GŁÓWNEJ STRONY */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -10px;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    filter: blur(10px);
+}
 
-/* TYTUŁ */
 /* GŁÓWNY TYTUŁ */
 h1 {
     margin-top: 35px;
     margin-bottom: 35px;
-
     font-family: Arial, Helvetica, sans-serif;
     font-size: 82px;
     font-weight: 800;
-
     letter-spacing: 12px;
-
     color: #071a2b;
-
     text-shadow:
         0 2px 0 rgba(255, 255, 255, 0.7),
         0 0 15px rgba(180, 220, 255, 0.35);
-
     position: relative;
 }
 
-
-/* KATEGORIA */
+/* KATEGORIE */
 .category-title {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
-
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -48,287 +60,161 @@ h1 {
 .category-title::before,
 .category-title::after {
     content: "";
-
     width: 140px;
     height: 2px;
-
     background: rgba(15, 35, 55, 0.8);
-
-    box-shadow:
-        0 0 8px rgba(20, 70, 110, 0.35);
+    box-shadow: 0 0 8px rgba(20, 70, 110, 0.35);
 }
 
 .category-title span {
     font-family: "Arial Narrow", Arial, sans-serif;
-
     font-size: 14px;
     font-weight: 700;
-
     letter-spacing: 5px;
-
     color: rgb(10, 35, 60);
-
-    text-shadow:
-        0 1px 3px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
 }
 
-
-/* TŁO */
-body::before {
-    content: "";
-    position: fixed;
-    inset: -10px;
-
-    background-image: url("background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-
-    filter: blur(10px);
-}
-
-
-/* SIATKA */
+/* SIATKA SAMOLOTÓW */
 .aircraft-grid {
     display: grid;
-
     grid-template-columns: repeat(4, 240px);
-
     gap: 20px;
-
     padding: 20px;
-
     justify-content: center;
 }
 
-
-/* KARTA */
+/* KARTY SAMOLOTÓW */
 .aircraft-card {
     width: 240px;
-
     background: rgba(10, 15, 22, 0.75);
-
     border: 1px solid rgba(180, 220, 255, 0.35);
-
     border-radius: 16px;
-
     overflow: hidden;
-
     cursor: pointer;
-
     box-shadow:
         0 0 8px rgba(150, 210, 255, 0.15),
         0 0 20px rgba(100, 180, 255, 0.08);
-
     backdrop-filter: blur(8px);
-
     transition: 0.25s ease;
 }
 
-
-/* HOVER */
 .aircraft-card:hover {
     transform: translateY(-5px);
-
     border-color: rgba(200, 225, 255, 0.85);
-
     box-shadow:
         0 0 12px rgba(180, 225, 255, 0.4),
         0 0 25px rgba(100, 190, 255, 0.2);
 }
 
-
-/* ZDJĘCIE */
 .aircraft-card img {
     width: 100%;
     height: 240px;
-
     object-fit: contain;
     object-position: center;
-
     display: block;
-
     background: rgba(0, 0, 0, 0.2);
 }
 
-
-/* NAZWA */
 .aircraft-name {
     padding: 12px;
-
     text-align: center;
-
     font-size: 16px;
     font-weight: bold;
 }
 
-
-/* =========================
-   POPUP SAMOLOTU
-========================= */
-
+/* POPUP F-35A */
 .aircraft-popup {
     position: fixed;
     inset: 0;
-
     display: none;
     align-items: center;
     justify-content: center;
-
     background: rgba(3, 10, 17, 0.78);
-
     backdrop-filter: blur(16px);
-
     z-index: 1000;
-
     padding: 30px;
-
-    opacity: 0;
+    overflow-y: auto;
 }
-
-
-/* POPUP AKTYWNY */
 
 .aircraft-popup.active {
     display: flex;
-
     animation: popupFadeIn 0.3s ease forwards;
 }
 
-
-/* UKRYCIE PASKA PRZEWIJANIA */
-
 .popup-content {
+    position: relative;
+    width: min(900px, 90vw);
+    max-height: 90vh;
+    overflow-y: auto;
     scrollbar-width: none;
+    background: linear-gradient(
+        145deg,
+        rgba(13, 24, 36, 0.97),
+        rgba(6, 14, 23, 0.97)
+    );
+    border: 1px solid rgba(160, 210, 255, 0.3);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow:
+        0 0 25px rgba(90, 170, 240, 0.15),
+        0 0 80px rgba(30, 100, 160, 0.18);
+    text-align: left;
+    animation: popupCardIn 0.4s cubic-bezier(.2, .8, .2, 1) forwards;
 }
 
 .popup-content::-webkit-scrollbar {
     display: none;
 }
 
-
-/* GŁÓWNA KARTA */
-
-.popup-content {
-    position: relative;
-
-    width: min(900px, 90vw);
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(13, 24, 36, 0.97),
-            rgba(6, 14, 23, 0.97)
-        );
-
-    border: 1px solid rgba(160, 210, 255, 0.3);
-
-    border-radius: 24px;
-
-    padding: 35px;
-
-    box-shadow:
-        0 0 25px rgba(90, 170, 240, 0.15),
-        0 0 80px rgba(30, 100, 160, 0.18);
-
-    text-align: left;
-
-    transform: translateY(30px) scale(0.96);
-
-    opacity: 0;
-
-    animation: popupCardIn 0.4s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-
-/* PRZYCISK X */
-
 .popup-close {
     position: absolute;
-
     top: 18px;
     right: 20px;
-
     width: 42px;
     height: 42px;
-
     border: 1px solid rgba(200, 225, 255, 0.2);
-
     border-radius: 12px;
-
     background: rgba(255, 255, 255, 0.05);
-
     color: white;
-
     font-size: 20px;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .popup-close:hover {
     background: rgba(255, 255, 255, 0.12);
-
     border-color: rgba(200, 225, 255, 0.5);
-
     transform: rotate(90deg) scale(1.05);
 }
 
-
-/* NAGŁÓWEK */
-
 .popup-header {
     margin-bottom: 25px;
-
     padding-right: 60px;
-
     animation: contentSlide 0.5s 0.08s ease both;
 }
 
 .popup-title {
     font-size: 38px;
     font-weight: 800;
-
     letter-spacing: 4px;
-
     color: white;
-
-    text-shadow:
-        0 0 12px rgba(150, 210, 255, 0.25);
+    text-shadow: 0 0 12px rgba(150, 210, 255, 0.25);
 }
 
 .popup-subtitle {
     margin-top: 7px;
-
     font-size: 13px;
     font-weight: 600;
-
     letter-spacing: 4px;
-
     color: rgba(160, 200, 230, 0.65);
 }
 
-
-/* ZDJĘCIE */
-
-.popup-image-container 
-  /* ZDJĘCIE W POPUPIE */
 .popup-image-container {
     width: 100%;
     aspect-ratio: 16 / 9;
-
     overflow: hidden;
     border-radius: 18px;
-
     border: 1px solid rgba(180, 220, 255, 0.18);
     background: rgba(0, 0, 0, 0.3);
 }
@@ -336,38 +222,23 @@ body::before {
 .popup-image-container img {
     width: 100%;
     height: 100%;
-
     object-fit: contain;
     object-position: center;
-
     display: block;
 }
 
-
-
-
-/* SPECIFICATIONS */
-
+/* SPECYFIKACJE F-35A */
 .specifications-title {
     margin-top: 30px;
     margin-bottom: 20px;
-
     font-size: 13px;
     font-weight: 800;
-
     letter-spacing: 5px;
-
     color: rgba(180, 215, 240, 0.8);
-
     border-bottom: 1px solid rgba(180, 220, 255, 0.15);
-
     padding-bottom: 12px;
-
     animation: contentSlide 0.5s 0.22s ease both;
 }
-
-
-/* SPECYFIKACJE */
 
 .spec-list {
     animation: contentSlide 0.5s 0.28s ease both;
@@ -380,61 +251,253 @@ body::before {
 .spec-top {
     display: flex;
     justify-content: space-between;
-
+    gap: 15px;
     margin-bottom: 7px;
-
     font-size: 12px;
     font-weight: 700;
-
     letter-spacing: 2px;
-
     color: rgba(235, 242, 250, 0.85);
 }
-
-
-/* PASEK */
 
 .spec-bar {
     width: 100%;
     height: 7px;
-
     background: rgba(255, 255, 255, 0.08);
-
     border-radius: 10px;
-
     overflow: hidden;
 }
 
 .spec-fill {
     height: 100%;
-
     background: linear-gradient(
         90deg,
         rgba(90, 160, 220, 0.6),
         rgba(180, 225, 255, 0.95)
     );
-
     border-radius: 10px;
-
-    box-shadow: none;
-border: 1px solid rgba(160, 210, 255, 0.15);
-
+    border: 1px solid rgba(160, 210, 255, 0.15);
     animation: barGrow 0.9s 0.35s ease both;
 }
 
+/* PRZYCISK OPEN COMPARISON */
+.comparison-open {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 900;
+    margin: 0;
+    padding: 13px 18px;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #d9efff;
+    background: rgba(10, 25, 40, 0.92);
+    border: 1px solid rgba(130, 195, 240, 0.55);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
 
-/* =========================
-   ANIMACJE
-========================= */
+.comparison-open:hover {
+    background: rgba(35, 75, 110, 0.95);
+    border-color: #8bcfff;
+    box-shadow: 0 0 22px rgba(80, 170, 240, 0.2);
+}
 
+/* EKRAN AIRCRAFT COMPARISON */
+.comparison-screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+    overflow: auto;
+    display: none;
+    isolation: isolate;
+    background: transparent;
+
+    /* TŁO COMPARISON */
+    background-image: url("tlovs.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: left;
+    z-index: 99999;
+}
+
+.comparison-screen::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background-image: url("tlovs.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(6px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.comparison-screen.active {
+    display: block !important;
+    animation: comparisonAppear 0.3s ease both;
+}
+
+/* NAGŁÓWEK */
+.comparison-header h2 {
+    margin: 0;
+    text-align: center;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: clamp(26px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: clamp(2px, 0.5vw, 7px);
+    color: #000000;
+    text-shadow: none;
+}
+
+.comparison-header::before,
+.comparison-header::after,
+.comparison-header h2::before,
+.comparison-header h2::after {
+    display: none !important;
+    content: none !important;
+}
+
+.comparison-header h2 {
+    margin: 0;
+    text-align: center;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: clamp(26px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: clamp(2px, 0.5vw, 7px);
+    color: #000000;
+    text-shadow: none;
+}
+
+
+/* PRZYCISK ZAMYKANIA */
+.comparison-close {
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    width: 46px;
+    height: 46px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    background:#000000;
+    color: #ffffff;
+    font-size: 21px;
+    cursor: pointer;
+    transition: none;
+}
+
+.comparison-close:hover,
+.comparison-close:focus,
+.comparison-close:active {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(170, 210, 240, 0.25);
+    box-shadow: none;
+    transform: none;
+    outline: none;
+}
+
+/* ZAWARTOŚĆ PORÓWNANIA */
+.comparison-content {
+    width: min(1100px, 94%);
+    margin: 10px auto 40px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 25px;
+}
+
+.comparison-column {
+    min-width: 0;
+    padding: 22px;
+    text-align: center;
+    border: 1px solid rgba(180, 220, 255, 0.35);
+    border-radius: 16px;
+    background: rgba(10, 15, 22, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+.comparison-column label {
+    display: block;
+    margin-bottom: 12px;
+    color: #c4e5ff;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.comparison-column select {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 12px;
+    color: white;
+    font-size: 13px;
+    border: 1px solid rgba(180, 220, 255, 0.35);
+    border-radius: 8px;
+    background: #101b28;
+    cursor: pointer;
+}
+
+.comparison-column select option {
+    color: white;
+    background: #101b28;
+}
+
+.comparison-image-box {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.comparison-image-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.comparison-column h3 {
+    margin-top: 18px;
+    font-size: 18px;
+}
+
+.aircraft-type {
+    margin-top: 8px;
+    color: rgba(200, 220, 240, 0.75);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.versus {
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #e6f4ff;
+    text-shadow: 0 0 18px rgba(100, 190, 255, 0.4);
+}
+
+/* ANIMACJE */
 @keyframes popupFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes popupCardIn {
@@ -442,7 +505,6 @@ border: 1px solid rgba(160, 210, 255, 0.15);
         opacity: 0;
         transform: translateY(30px) scale(0.96);
     }
-
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -454,7 +516,6 @@ border: 1px solid rgba(160, 210, 255, 0.15);
         opacity: 0;
         transform: translateY(15px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -466,9 +527,206 @@ border: 1px solid rgba(160, 210, 255, 0.15);
         transform: scaleX(0);
         transform-origin: left;
     }
-
     to {
         transform: scaleX(1);
         transform-origin: left;
     }
+}
+
+@keyframes comparisonAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* BLOKADA PRZEWIJANIA POD EKRANEM PORÓWNANIA */
+body.comparison-open {
+    overflow: hidden;
+}
+
+/* MNIEJSZE EKRANY */
+@media (max-width: 1100px) {
+    .aircraft-grid {
+        grid-template-columns: repeat(3, 240px);
+    }
+}
+
+@media (max-width: 800px) {
+    .aircraft-grid {
+        grid-template-columns: repeat(2, minmax(0, 240px));
+        padding: 12px;
+        gap: 14px;
+    }
+
+    .aircraft-card {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: clamp(36px, 8vw, 64px);
+        letter-spacing: 6px;
+    }
+
+    .popup-content {
+        padding: 25px;
+    }
+
+    .popup-title {
+        font-size: 28px;
+    }
+
+    .comparison-content {
+        gap: 12px;
+    }
+
+    .comparison-column {
+        padding: 14px;
+    }
+
+    .comparison-column h3 {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 520px) {
+    .aircraft-grid {
+        grid-template-columns: minmax(0, 280px);
+    }
+
+    .comparison-open {
+        top: 10px;
+        left: 10px;
+        padding: 10px 12px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    h1 {
+        margin-top: 75px;
+        font-size: 36px;
+        letter-spacing: 4px;
+    }
+
+    .category-title::before,
+    .category-title::after {
+        width: 35px;
+    }
+
+    .category-title {
+        gap: 10px;
+    }
+
+    .category-title span {
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .aircraft-popup {
+        padding: 12px;
+    }
+
+    .popup-content {
+        width: 100%;
+        max-height: 94vh;
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .popup-title {
+        font-size: 22px;
+        letter-spacing: 2px;
+    }
+
+    .popup-subtitle {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .spec-top {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .comparison-header {
+        padding: 30px 20px;
+    }
+
+    .comparison-header h2 {
+        padding-right: 25px;
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+
+    .comparison-close {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .comparison-content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .versus {
+        text-align: center;
+    }
+}
+
+.comparison-close,
+.comparison-close:hover,
+.comparison-close:focus {
+    background-color: #000 !important;
+    color: #fff !important;
+    opacity: 1 !important;
+}
+ 
+/* UKRYCIE PASKA PRZEWIJANIA */
+html,
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* GŁÓWNA STRONA */
+body {
+    overflow-x: hidden;
+}
+
+/* COMPARISON */
+.comparison-screen {
+    overflow-x: hidden !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.comparison-screen::-webkit-scrollbar {
+    display: none;
+}
+
+/* WIĘKSZY OBSZAR KLIKANIA X W F-35 */
+.comparison-close {
+    padding: 12px !important;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border box;
+    cursor: pointer;
+}
+
+.comparison-close {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    box-sizing: border-box;
 }
